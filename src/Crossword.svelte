@@ -11,7 +11,7 @@
   import themeStyles from "./helpers/themeStyles.js";
 
   export let data = [];
-  export let actions = ["clear", "reveal", "check"];
+  export let actions = ["clear", "reveal", "check", "uncheck"];
   export let theme = "classic";
   export let revealDuration = 1000;
   export let breakpoint = 720;
@@ -111,6 +111,10 @@
     isChecking = true;
   }
 
+  function onUncheck() {
+    isChecking = false;
+  }
+
   function startReveal() {
     isRevealing = true;
     isChecking = false;
@@ -124,6 +128,7 @@
     if (detail === "clear") onClear();
     else if (detail === "reveal") onReveal();
     else if (detail === "check") onCheck();
+    else if (detail === "uncheck") onUncheck();
   }
 </script>
 
@@ -136,7 +141,8 @@
       name="toolbar"
       onClear="{onClear}"
       onReveal="{onReveal}"
-      onCheck="{onCheck}">
+      onCheck="{onCheck}"
+      onUncheck="{onUncheck}">
       <Toolbar actions="{actions}" on:event="{onToolbarEvent}" />
     </slot>
 

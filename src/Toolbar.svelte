@@ -2,7 +2,7 @@
   import { createEventDispatcher } from "svelte";
   const dispatch = createEventDispatcher();
 
-  export let actions = ["clear", "reveal", "check"];
+  export let actions = ["clear", "reveal", "check", "uncheck"];
 </script>
 
 <div class="toolbar">
@@ -11,6 +11,8 @@
       <button on:click="{() => dispatch('event', 'clear')}">Clear</button>
     {:else if action === 'reveal'}
       <button on:click="{() => dispatch('event', 'reveal')}">Reveal</button>
+    {:else if action === 'uncheck'}
+      <button on:click="{() => dispatch('event', 'uncheck')}">Uncheck</button>
     {:else if action === 'check'}
       <button on:click="{() => dispatch('event', 'check')}">Check</button>
     {/if}
