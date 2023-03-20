@@ -1,5 +1,5 @@
 <script>
-  import { onMount } from "svelte";
+  import { onMount, createEventDispatcher } from "svelte";
   import Toolbar from "./Toolbar.svelte";
   import Puzzle from "./Puzzle.svelte";
   import Clues from "./Clues.svelte";
@@ -11,6 +11,7 @@
   import themeStyles from "./helpers/themeStyles.js";
 
   export let data = [];
+  export let state = {}; // {clues: }
   export let actions = ["clear", "reveal", "check", "uncheck"];
   export let theme = "classic";
   export let revealDuration = 1000;
@@ -36,20 +37,28 @@
   let clues = [];
   let cells = [];
 
+  const dispatch = createEventDispatcher();
+
   const onDataUpdate = () => {
+    console.log('onDataUpdate');
     originalClues = createClues(data);
     validated = validateClues(originalClues);
     clues = originalClues.map((d) => ({ ...d }));
     cells = createCells(originalClues);
     reset();
+    if (state && state.cells) {
+      setState(state);
+    }
   };
 
   $: data, onDataUpdate();
   $: focusedCell = cells[focusedCellIndex] || {};
   $: cellIndexMap = fromPairs(cells.map((cell) => [cell.id, cell.index]));
-  $: percentCorrect =
-    cells.filter((d) => d.answer === d.value).length / cells.length;
+  $: percentCorrect = cells.filter((d) => d.answer === d.value).length / cells.length;
   $: isComplete = percentCorrect == 1;
+  $: if (isComplete && cells.length > 0) {
+    onComplete();
+  };
   $: isDisableHighlight = isComplete && disableHighlight;
   $: cells, (clues = checkClues());
   $: cells, (revealed = !clues.filter((d) => !d.isCorrect).length);
@@ -88,6 +97,35 @@
     focusedDirection = "across";
   }
 
+  /**
+   * Setting previous saved state
+   * 
+   *   answer: "F"
+   *   clueNumbers: {down: 1, across: 1}
+   *   custom: ""
+   *   id: "2-0"
+   *   index: 0
+   *   number: 1
+   *   value: "F"
+   *   x: 2
+   *   y: 0
+   * 
+   * @param state
+   */
+  function setState(state) {
+    if (state.cells.length) {
+      cells = cells.map((cell) => {
+        const currCell = state.cells.find(obj => {
+          return obj.id === cell.id
+        });
+        return {
+          ...cell,
+          value: currCell.value
+        }
+      });
+    }
+  }
+
   function onClear() {
     reset();
     if (revealTimeout) clearTimeout(revealTimeout);
@@ -114,6 +152,18 @@
   function onUncheck() {
     isChecking = false;
   }
+
+  function onCellChange (event) {
+    dispatch('cellChange', {
+			cells: event.detail.cells
+		});
+  }
+
+  const onComplete = () => {
+    dispatch('complete', {
+			cellIndexMap: cellIndexMap
+		});
+  };
 
   function startReveal() {
     isRevealing = true;
@@ -167,6 +217,7 @@
         stacked="{stacked}"
         isLoaded="{isLoaded}"
         keyboardStyle="{keyboardStyle}"
+        on:cellChange
         bind:cells
         bind:focusedCellIndex
         bind:focusedDirection />

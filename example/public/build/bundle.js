@@ -342,6 +342,15 @@ var app = (function (Keyboard) {
             }
         };
     }
+    // TODO figure out if we still want to support
+    // shorthand events, or if we want to implement
+    // a real bubbling mechanism
+    function bubble(component, event) {
+        const callbacks = component.$$.callbacks[event.type];
+        if (callbacks) {
+            callbacks.slice().forEach(fn => fn(event));
+        }
+    }
 
     const dirty_components = [];
     const binding_callbacks = [];
@@ -567,6 +576,12 @@ var app = (function (Keyboard) {
         };
     }
 
+    const globals = (typeof window !== 'undefined'
+        ? window
+        : typeof globalThis !== 'undefined'
+            ? globalThis
+            : global);
+
     function bind(component, name, callback) {
         const index = component.$$.props[name];
         if (index !== undefined) {
@@ -783,7 +798,7 @@ var app = (function (Keyboard) {
     	return child_ctx;
     }
 
-    // (16:33) 
+    // (17:33) 
     function create_if_block_3(ctx) {
     	let button;
     	let t;
@@ -805,7 +820,7 @@ var app = (function (Keyboard) {
     		},
     		h: function hydrate() {
     			attr_dev(button, "class", "svelte-e4q29q");
-    			add_location(button, file, 16, 6, 600);
+    			add_location(button, file, 17, 6, 601);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, button, anchor);
@@ -828,14 +843,14 @@ var app = (function (Keyboard) {
     		block,
     		id: create_if_block_3.name,
     		type: "if",
-    		source: "(16:33) ",
+    		source: "(17:33) ",
     		ctx
     	});
 
     	return block;
     }
 
-    // (14:35) 
+    // (15:35) 
     function create_if_block_2(ctx) {
     	let button;
     	let t;
@@ -857,7 +872,7 @@ var app = (function (Keyboard) {
     		},
     		h: function hydrate() {
     			attr_dev(button, "class", "svelte-e4q29q");
-    			add_location(button, file, 14, 6, 487);
+    			add_location(button, file, 15, 6, 488);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, button, anchor);
@@ -880,14 +895,14 @@ var app = (function (Keyboard) {
     		block,
     		id: create_if_block_2.name,
     		type: "if",
-    		source: "(14:35) ",
+    		source: "(15:35) ",
     		ctx
     	});
 
     	return block;
     }
 
-    // (12:34) 
+    // (13:34) 
     function create_if_block_1(ctx) {
     	let button;
     	let t;
@@ -909,7 +924,7 @@ var app = (function (Keyboard) {
     		},
     		h: function hydrate() {
     			attr_dev(button, "class", "svelte-e4q29q");
-    			add_location(button, file, 12, 6, 374);
+    			add_location(button, file, 13, 6, 375);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, button, anchor);
@@ -932,14 +947,14 @@ var app = (function (Keyboard) {
     		block,
     		id: create_if_block_1.name,
     		type: "if",
-    		source: "(12:34) ",
+    		source: "(13:34) ",
     		ctx
     	});
 
     	return block;
     }
 
-    // (10:4) {#if action === 'clear'}
+    // (11:4) {#if action === 'clear'}
     function create_if_block(ctx) {
     	let button;
     	let t;
@@ -961,7 +976,7 @@ var app = (function (Keyboard) {
     		},
     		h: function hydrate() {
     			attr_dev(button, "class", "svelte-e4q29q");
-    			add_location(button, file, 10, 6, 264);
+    			add_location(button, file, 11, 6, 265);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, button, anchor);
@@ -984,14 +999,14 @@ var app = (function (Keyboard) {
     		block,
     		id: create_if_block.name,
     		type: "if",
-    		source: "(10:4) {#if action === 'clear'}",
+    		source: "(11:4) {#if action === 'clear'}",
     		ctx
     	});
 
     	return block;
     }
 
-    // (9:2) {#each actions as action}
+    // (10:2) {#each actions as action}
     function create_each_block(ctx) {
     	let if_block_anchor;
 
@@ -1044,7 +1059,7 @@ var app = (function (Keyboard) {
     		block,
     		id: create_each_block.name,
     		type: "each",
-    		source: "(9:2) {#each actions as action}",
+    		source: "(10:2) {#each actions as action}",
     		ctx
     	});
 
@@ -1084,7 +1099,7 @@ var app = (function (Keyboard) {
     		},
     		h: function hydrate() {
     			attr_dev(div, "class", "toolbar svelte-e4q29q");
-    			add_location(div, file, 7, 0, 179);
+    			add_location(div, file, 8, 0, 180);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, div, anchor);
@@ -2111,37 +2126,37 @@ var app = (function (Keyboard) {
 
     function get_each_context$1(ctx, list, i) {
     	const child_ctx = ctx.slice();
-    	child_ctx[36] = list[i].x;
-    	child_ctx[37] = list[i].y;
-    	child_ctx[38] = list[i].value;
-    	child_ctx[39] = list[i].answer;
-    	child_ctx[40] = list[i].index;
-    	child_ctx[41] = list[i].number;
-    	child_ctx[42] = list[i].custom;
+    	child_ctx[37] = list[i].x;
+    	child_ctx[38] = list[i].y;
+    	child_ctx[39] = list[i].value;
+    	child_ctx[40] = list[i].answer;
+    	child_ctx[41] = list[i].index;
+    	child_ctx[42] = list[i].number;
+    	child_ctx[43] = list[i].custom;
     	return child_ctx;
     }
 
-    // (200:4) {#each cells as { x, y, value, answer, index, number, custom }}
+    // (211:4) {#each cells as { x, y, value, answer, index, number, custom }}
     function create_each_block$1(ctx) {
     	let cell;
     	let current;
 
     	cell = new Cell({
     			props: {
-    				x: /*x*/ ctx[36],
-    				y: /*y*/ ctx[37],
-    				index: /*index*/ ctx[40],
-    				value: /*value*/ ctx[38],
-    				answer: /*answer*/ ctx[39],
-    				number: /*number*/ ctx[41],
-    				custom: /*custom*/ ctx[42],
+    				x: /*x*/ ctx[37],
+    				y: /*y*/ ctx[38],
+    				index: /*index*/ ctx[41],
+    				value: /*value*/ ctx[39],
+    				answer: /*answer*/ ctx[40],
+    				number: /*number*/ ctx[42],
+    				custom: /*custom*/ ctx[43],
     				changeDelay: /*isRevealing*/ ctx[2]
-    				? /*revealDuration*/ ctx[6] / /*cells*/ ctx[0].length * /*index*/ ctx[40]
+    				? /*revealDuration*/ ctx[6] / /*cells*/ ctx[0].length * /*index*/ ctx[41]
     				: 0,
     				isRevealing: /*isRevealing*/ ctx[2],
     				isChecking: /*isChecking*/ ctx[3],
-    				isFocused: /*focusedCellIndex*/ ctx[1] == /*index*/ ctx[40] && !/*isDisableHighlight*/ ctx[4],
-    				isSecondarilyFocused: /*secondarilyFocusedCells*/ ctx[10].includes(/*index*/ ctx[40]) && !/*isDisableHighlight*/ ctx[4],
+    				isFocused: /*focusedCellIndex*/ ctx[1] == /*index*/ ctx[41] && !/*isDisableHighlight*/ ctx[4],
+    				isSecondarilyFocused: /*secondarilyFocusedCells*/ ctx[10].includes(/*index*/ ctx[41]) && !/*isDisableHighlight*/ ctx[4],
     				onFocusCell: /*onFocusCell*/ ctx[16],
     				onCellUpdate: /*onCellUpdate*/ ctx[14],
     				onFocusClueDiff: /*onFocusClueDiff*/ ctx[17],
@@ -2165,22 +2180,22 @@ var app = (function (Keyboard) {
     		},
     		p: function update(ctx, dirty) {
     			const cell_changes = {};
-    			if (dirty[0] & /*cells*/ 1) cell_changes.x = /*x*/ ctx[36];
-    			if (dirty[0] & /*cells*/ 1) cell_changes.y = /*y*/ ctx[37];
-    			if (dirty[0] & /*cells*/ 1) cell_changes.index = /*index*/ ctx[40];
-    			if (dirty[0] & /*cells*/ 1) cell_changes.value = /*value*/ ctx[38];
-    			if (dirty[0] & /*cells*/ 1) cell_changes.answer = /*answer*/ ctx[39];
-    			if (dirty[0] & /*cells*/ 1) cell_changes.number = /*number*/ ctx[41];
-    			if (dirty[0] & /*cells*/ 1) cell_changes.custom = /*custom*/ ctx[42];
+    			if (dirty[0] & /*cells*/ 1) cell_changes.x = /*x*/ ctx[37];
+    			if (dirty[0] & /*cells*/ 1) cell_changes.y = /*y*/ ctx[38];
+    			if (dirty[0] & /*cells*/ 1) cell_changes.index = /*index*/ ctx[41];
+    			if (dirty[0] & /*cells*/ 1) cell_changes.value = /*value*/ ctx[39];
+    			if (dirty[0] & /*cells*/ 1) cell_changes.answer = /*answer*/ ctx[40];
+    			if (dirty[0] & /*cells*/ 1) cell_changes.number = /*number*/ ctx[42];
+    			if (dirty[0] & /*cells*/ 1) cell_changes.custom = /*custom*/ ctx[43];
 
     			if (dirty[0] & /*isRevealing, revealDuration, cells*/ 69) cell_changes.changeDelay = /*isRevealing*/ ctx[2]
-    			? /*revealDuration*/ ctx[6] / /*cells*/ ctx[0].length * /*index*/ ctx[40]
+    			? /*revealDuration*/ ctx[6] / /*cells*/ ctx[0].length * /*index*/ ctx[41]
     			: 0;
 
     			if (dirty[0] & /*isRevealing*/ 4) cell_changes.isRevealing = /*isRevealing*/ ctx[2];
     			if (dirty[0] & /*isChecking*/ 8) cell_changes.isChecking = /*isChecking*/ ctx[3];
-    			if (dirty[0] & /*focusedCellIndex, cells, isDisableHighlight*/ 19) cell_changes.isFocused = /*focusedCellIndex*/ ctx[1] == /*index*/ ctx[40] && !/*isDisableHighlight*/ ctx[4];
-    			if (dirty[0] & /*secondarilyFocusedCells, cells, isDisableHighlight*/ 1041) cell_changes.isSecondarilyFocused = /*secondarilyFocusedCells*/ ctx[10].includes(/*index*/ ctx[40]) && !/*isDisableHighlight*/ ctx[4];
+    			if (dirty[0] & /*focusedCellIndex, cells, isDisableHighlight*/ 19) cell_changes.isFocused = /*focusedCellIndex*/ ctx[1] == /*index*/ ctx[41] && !/*isDisableHighlight*/ ctx[4];
+    			if (dirty[0] & /*secondarilyFocusedCells, cells, isDisableHighlight*/ 1041) cell_changes.isSecondarilyFocused = /*secondarilyFocusedCells*/ ctx[10].includes(/*index*/ ctx[41]) && !/*isDisableHighlight*/ ctx[4];
     			cell.$set(cell_changes);
     		},
     		i: function intro(local) {
@@ -2201,14 +2216,14 @@ var app = (function (Keyboard) {
     		block,
     		id: create_each_block$1.name,
     		type: "each",
-    		source: "(200:4) {#each cells as { x, y, value, answer, index, number, custom }}",
+    		source: "(211:4) {#each cells as { x, y, value, answer, index, number, custom }}",
     		ctx
     	});
 
     	return block;
     }
 
-    // (224:0) {#if keyboardVisible}
+    // (235:0) {#if keyboardVisible}
     function create_if_block$2(ctx) {
     	let div;
     	let keyboard;
@@ -2239,7 +2254,7 @@ var app = (function (Keyboard) {
     		},
     		h: function hydrate() {
     			attr_dev(div, "class", "keyboard svelte-ce6hth");
-    			add_location(div, file$2, 224, 2, 6863);
+    			add_location(div, file$2, 235, 2, 7042);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, div, anchor);
@@ -2270,7 +2285,7 @@ var app = (function (Keyboard) {
     		block,
     		id: create_if_block$2.name,
     		type: "if",
-    		source: "(224:0) {#if keyboardVisible}",
+    		source: "(235:0) {#if keyboardVisible}",
     		ctx
     	});
 
@@ -2334,11 +2349,11 @@ var app = (function (Keyboard) {
     		h: function hydrate() {
     			attr_dev(svg, "viewBox", svg_viewBox_value = "0 0 " + /*w*/ ctx[11] + " " + /*h*/ ctx[12]);
     			attr_dev(svg, "class", "svelte-ce6hth");
-    			add_location(svg, file$2, 198, 2, 5970);
+    			add_location(svg, file$2, 209, 2, 6149);
     			attr_dev(section, "class", "puzzle svelte-ce6hth");
     			toggle_class(section, "stacked", /*stacked*/ ctx[5]);
     			toggle_class(section, "is-loaded", /*isLoaded*/ ctx[7]);
-    			add_location(section, file$2, 193, 0, 5870);
+    			add_location(section, file$2, 204, 0, 6049);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, section, anchor);
@@ -2492,6 +2507,7 @@ var app = (function (Keyboard) {
     	let secondarilyFocusedCells = [];
     	let isMobile = false;
     	let isPuzzleFocused = false;
+    	const dispatch = new createEventDispatcher();
 
     	onMount(() => {
     		$$invalidate(31, isMobile = checkMobile());
@@ -2518,6 +2534,7 @@ var app = (function (Keyboard) {
     		cellsHistory = [newCells, ...cellsHistory.slice(cellsHistoryIndex)].slice(0, numberOfStatesInHistory);
     		cellsHistoryIndex = 0;
     		$$invalidate(0, cells = newCells);
+    		dispatch("cellChange", { cells, index, newValue });
 
     		if (isAtEndOfClue && diff > 0) {
     			onFocusClueDiff(diff);
@@ -2651,6 +2668,7 @@ var app = (function (Keyboard) {
 
     	$$self.$capture_state = () => ({
     		onMount,
+    		createEventDispatcher,
     		Keyboard: Keyboard__default['default'],
     		getSecondarilyFocusedCells,
     		getCellAfterDiff,
@@ -2677,6 +2695,7 @@ var app = (function (Keyboard) {
     		secondarilyFocusedCells,
     		isMobile,
     		isPuzzleFocused,
+    		dispatch,
     		numberOfStatesInHistory,
     		updateSecondarilyFocusedCells,
     		onCellUpdate,
@@ -5312,6 +5331,8 @@ var app = (function (Keyboard) {
     });
 
     /* Users/graeme.hoffman/Documents/WORK/crossword/src/Crossword.svelte generated by Svelte v3.29.0 */
+
+    const { console: console_1 } = globals;
     const file$9 = "Users/graeme.hoffman/Documents/WORK/crossword/src/Crossword.svelte";
     const get_message_slot_changes = dirty => ({});
     const get_message_slot_context = ctx => ({});
@@ -5324,7 +5345,7 @@ var app = (function (Keyboard) {
     	onUncheck: /*onUncheck*/ ctx[24]
     });
 
-    // (135:0) {#if validated}
+    // (185:0) {#if validated}
     function create_if_block$4(ctx) {
     	let article;
     	let t0;
@@ -5341,20 +5362,20 @@ var app = (function (Keyboard) {
     	let t2;
     	let article_resize_listener;
     	let current;
-    	const toolbar_slot_template = /*#slots*/ ctx[31].toolbar;
-    	const toolbar_slot = create_slot(toolbar_slot_template, ctx, /*$$scope*/ ctx[39], get_toolbar_slot_context);
+    	const toolbar_slot_template = /*#slots*/ ctx[32].toolbar;
+    	const toolbar_slot = create_slot(toolbar_slot_template, ctx, /*$$scope*/ ctx[41], get_toolbar_slot_context);
     	const toolbar_slot_or_fallback = toolbar_slot || fallback_block_1(ctx);
 
     	function clues_1_focusedCellIndex_binding(value) {
-    		/*clues_1_focusedCellIndex_binding*/ ctx[32].call(null, value);
+    		/*clues_1_focusedCellIndex_binding*/ ctx[33].call(null, value);
     	}
 
     	function clues_1_focusedCell_binding(value) {
-    		/*clues_1_focusedCell_binding*/ ctx[33].call(null, value);
+    		/*clues_1_focusedCell_binding*/ ctx[34].call(null, value);
     	}
 
     	function clues_1_focusedDirection_binding(value) {
-    		/*clues_1_focusedDirection_binding*/ ctx[34].call(null, value);
+    		/*clues_1_focusedDirection_binding*/ ctx[35].call(null, value);
     	}
 
     	let clues_1_props = {
@@ -5383,15 +5404,15 @@ var app = (function (Keyboard) {
     	binding_callbacks.push(() => bind(clues_1, "focusedDirection", clues_1_focusedDirection_binding));
 
     	function puzzle_cells_binding(value) {
-    		/*puzzle_cells_binding*/ ctx[35].call(null, value);
+    		/*puzzle_cells_binding*/ ctx[36].call(null, value);
     	}
 
     	function puzzle_focusedCellIndex_binding(value) {
-    		/*puzzle_focusedCellIndex_binding*/ ctx[36].call(null, value);
+    		/*puzzle_focusedCellIndex_binding*/ ctx[37].call(null, value);
     	}
 
     	function puzzle_focusedDirection_binding(value) {
-    		/*puzzle_focusedDirection_binding*/ ctx[37].call(null, value);
+    		/*puzzle_focusedDirection_binding*/ ctx[38].call(null, value);
     	}
 
     	let puzzle_props = {
@@ -5423,6 +5444,7 @@ var app = (function (Keyboard) {
     	binding_callbacks.push(() => bind(puzzle, "cells", puzzle_cells_binding));
     	binding_callbacks.push(() => bind(puzzle, "focusedCellIndex", puzzle_focusedCellIndex_binding));
     	binding_callbacks.push(() => bind(puzzle, "focusedDirection", puzzle_focusedDirection_binding));
+    	puzzle.$on("cellChange", /*cellChange_handler*/ ctx[39]);
     	let if_block = /*isComplete*/ ctx[17] && !/*isRevealing*/ ctx[9] && /*showCompleteMessage*/ ctx[2] && create_if_block_1$3(ctx);
 
     	const block = {
@@ -5458,11 +5480,11 @@ var app = (function (Keyboard) {
     			attr_dev(div, "class", "play svelte-186p9qm");
     			toggle_class(div, "stacked", /*stacked*/ ctx[19]);
     			toggle_class(div, "is-loaded", /*isLoaded*/ ctx[10]);
-    			add_location(div, file$9, 148, 4, 3964);
+    			add_location(div, file$9, 198, 4, 4966);
     			attr_dev(article, "class", "svelte-crossword svelte-186p9qm");
     			attr_dev(article, "style", /*inlineStyles*/ ctx[20]);
-    			add_render_callback(() => /*article_elementresize_handler*/ ctx[38].call(article));
-    			add_location(article, file$9, 135, 2, 3642);
+    			add_render_callback(() => /*article_elementresize_handler*/ ctx[40].call(article));
+    			add_location(article, file$9, 185, 2, 4644);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, article, anchor);
@@ -5478,13 +5500,13 @@ var app = (function (Keyboard) {
     			mount_component(puzzle, div, null);
     			append_dev(article, t2);
     			if (if_block) if_block.m(article, null);
-    			article_resize_listener = add_resize_listener(article, /*article_elementresize_handler*/ ctx[38].bind(article));
+    			article_resize_listener = add_resize_listener(article, /*article_elementresize_handler*/ ctx[40].bind(article));
     			current = true;
     		},
     		p: function update(ctx, dirty) {
     			if (toolbar_slot) {
-    				if (toolbar_slot.p && dirty[1] & /*$$scope*/ 256) {
-    					update_slot(toolbar_slot, toolbar_slot_template, ctx, /*$$scope*/ ctx[39], dirty, get_toolbar_slot_changes, get_toolbar_slot_context);
+    				if (toolbar_slot.p && dirty[1] & /*$$scope*/ 1024) {
+    					update_slot(toolbar_slot, toolbar_slot_template, ctx, /*$$scope*/ ctx[41], dirty, get_toolbar_slot_changes, get_toolbar_slot_context);
     				}
     			} else {
     				if (toolbar_slot_or_fallback && toolbar_slot_or_fallback.p && dirty[0] & /*actions*/ 1) {
@@ -5614,14 +5636,14 @@ var app = (function (Keyboard) {
     		block,
     		id: create_if_block$4.name,
     		type: "if",
-    		source: "(135:0) {#if validated}",
+    		source: "(185:0) {#if validated}",
     		ctx
     	});
 
     	return block;
     }
 
-    // (145:30)        
+    // (195:30)        
     function fallback_block_1(ctx) {
     	let toolbar;
     	let current;
@@ -5667,14 +5689,14 @@ var app = (function (Keyboard) {
     		block,
     		id: fallback_block_1.name,
     		type: "fallback",
-    		source: "(145:30)        ",
+    		source: "(195:30)        ",
     		ctx
     	});
 
     	return block;
     }
 
-    // (175:4) {#if isComplete && !isRevealing && showCompleteMessage}
+    // (226:4) {#if isComplete && !isRevealing && showCompleteMessage}
     function create_if_block_1$3(ctx) {
     	let completedmessage;
     	let current;
@@ -5703,7 +5725,7 @@ var app = (function (Keyboard) {
     			const completedmessage_changes = {};
     			if (dirty[0] & /*showConfetti*/ 8) completedmessage_changes.showConfetti = /*showConfetti*/ ctx[3];
 
-    			if (dirty[1] & /*$$scope*/ 256) {
+    			if (dirty[1] & /*$$scope*/ 1024) {
     				completedmessage_changes.$$scope = { dirty, ctx };
     			}
 
@@ -5727,14 +5749,14 @@ var app = (function (Keyboard) {
     		block,
     		id: create_if_block_1$3.name,
     		type: "if",
-    		source: "(175:4) {#if isComplete && !isRevealing && showCompleteMessage}",
+    		source: "(226:4) {#if isComplete && !isRevealing && showCompleteMessage}",
     		ctx
     	});
 
     	return block;
     }
 
-    // (177:29)            
+    // (228:29)            
     function fallback_block(ctx) {
     	let h3;
     	let t;
@@ -5754,7 +5776,7 @@ var app = (function (Keyboard) {
     		},
     		h: function hydrate() {
     			attr_dev(h3, "class", "svelte-186p9qm");
-    			add_location(h3, file$9, 177, 10, 4918);
+    			add_location(h3, file$9, 228, 10, 5942);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, h3, anchor);
@@ -5769,18 +5791,18 @@ var app = (function (Keyboard) {
     		block,
     		id: fallback_block.name,
     		type: "fallback",
-    		source: "(177:29)            ",
+    		source: "(228:29)            ",
     		ctx
     	});
 
     	return block;
     }
 
-    // (176:6) <CompletedMessage showConfetti="{showConfetti}">
+    // (227:6) <CompletedMessage showConfetti="{showConfetti}">
     function create_default_slot(ctx) {
     	let current;
-    	const message_slot_template = /*#slots*/ ctx[31].message;
-    	const message_slot = create_slot(message_slot_template, ctx, /*$$scope*/ ctx[39], get_message_slot_context);
+    	const message_slot_template = /*#slots*/ ctx[32].message;
+    	const message_slot = create_slot(message_slot_template, ctx, /*$$scope*/ ctx[41], get_message_slot_context);
     	const message_slot_or_fallback = message_slot || fallback_block(ctx);
 
     	const block = {
@@ -5799,8 +5821,8 @@ var app = (function (Keyboard) {
     		},
     		p: function update(ctx, dirty) {
     			if (message_slot) {
-    				if (message_slot.p && dirty[1] & /*$$scope*/ 256) {
-    					update_slot(message_slot, message_slot_template, ctx, /*$$scope*/ ctx[39], dirty, get_message_slot_changes, get_message_slot_context);
+    				if (message_slot.p && dirty[1] & /*$$scope*/ 1024) {
+    					update_slot(message_slot, message_slot_template, ctx, /*$$scope*/ ctx[41], dirty, get_message_slot_changes, get_message_slot_context);
     				}
     			}
     		},
@@ -5822,7 +5844,7 @@ var app = (function (Keyboard) {
     		block,
     		id: create_default_slot.name,
     		type: "slot",
-    		source: "(176:6) <CompletedMessage showConfetti=\\\"{showConfetti}\\\">",
+    		source: "(227:6) <CompletedMessage showConfetti=\\\"{showConfetti}\\\">",
     		ctx
     	});
 
@@ -5902,6 +5924,7 @@ var app = (function (Keyboard) {
     	let { $$slots: slots = {}, $$scope } = $$props;
     	validate_slots("Crossword", slots, ['toolbar','message']);
     	let { data = [] } = $$props;
+    	let { state = {} } = $$props; // {clues: }
     	let { actions = ["clear", "reveal", "check", "uncheck"] } = $$props;
     	let { theme = "classic" } = $$props;
     	let { revealDuration = 1000 } = $$props;
@@ -5924,14 +5947,22 @@ var app = (function (Keyboard) {
     	let validated = [];
     	let clues = [];
     	let cells = [];
+    	const dispatch = createEventDispatcher();
 
     	const onDataUpdate = () => {
+    		console.log("onDataUpdate");
     		originalClues = createClues(data);
     		$$invalidate(12, validated = validateClues(originalClues));
     		$$invalidate(13, clues = originalClues.map(d => ({ ...d })));
     		$$invalidate(14, cells = createCells(originalClues));
     		reset();
+
+    		if (state && state.cells) {
+    			setState(state);
+    		}
     	};
+
+    	
 
     	onMount(() => {
     		$$invalidate(10, isLoaded = true);
@@ -5961,6 +5992,33 @@ var app = (function (Keyboard) {
     		$$invalidate(7, focusedDirection = "across");
     	}
 
+    	/**
+     * Setting previous saved state
+     * 
+     *   answer: "F"
+     *   clueNumbers: {down: 1, across: 1}
+     *   custom: ""
+     *   id: "2-0"
+     *   index: 0
+     *   number: 1
+     *   value: "F"
+     *   x: 2
+     *   y: 0
+     * 
+     * @param state
+     */
+    	function setState(state) {
+    		if (state.cells.length) {
+    			$$invalidate(14, cells = cells.map(cell => {
+    				const currCell = state.cells.find(obj => {
+    					return obj.id === cell.id;
+    				});
+
+    				return { ...cell, value: currCell.value };
+    			}));
+    		}
+    	}
+
     	function onClear() {
     		reset();
     		if (revealTimeout) clearTimeout(revealTimeout);
@@ -5982,6 +6040,14 @@ var app = (function (Keyboard) {
     		$$invalidate(11, isChecking = false);
     	}
 
+    	function onCellChange(event) {
+    		dispatch("cellChange", { cells: event.detail.cells });
+    	}
+
+    	const onComplete = () => {
+    		dispatch("complete", { cellIndexMap });
+    	};
+
     	function startReveal() {
     		$$invalidate(9, isRevealing = true);
     		$$invalidate(11, isChecking = false);
@@ -6001,6 +6067,7 @@ var app = (function (Keyboard) {
 
     	const writable_props = [
     		"data",
+    		"state",
     		"actions",
     		"theme",
     		"revealDuration",
@@ -6014,7 +6081,7 @@ var app = (function (Keyboard) {
     	];
 
     	Object.keys($$props).forEach(key => {
-    		if (!~writable_props.indexOf(key) && key.slice(0, 2) !== "$$") console.warn(`<Crossword> was created with unknown prop '${key}'`);
+    		if (!~writable_props.indexOf(key) && key.slice(0, 2) !== "$$") console_1.warn(`<Crossword> was created with unknown prop '${key}'`);
     	});
 
     	function clues_1_focusedCellIndex_binding(value) {
@@ -6047,6 +6114,10 @@ var app = (function (Keyboard) {
     		$$invalidate(7, focusedDirection);
     	}
 
+    	function cellChange_handler(event) {
+    		bubble($$self, event);
+    	}
+
     	function article_elementresize_handler() {
     		width = this.offsetWidth;
     		$$invalidate(6, width);
@@ -6054,21 +6125,23 @@ var app = (function (Keyboard) {
 
     	$$self.$$set = $$props => {
     		if ("data" in $$props) $$invalidate(27, data = $$props.data);
+    		if ("state" in $$props) $$invalidate(28, state = $$props.state);
     		if ("actions" in $$props) $$invalidate(0, actions = $$props.actions);
-    		if ("theme" in $$props) $$invalidate(28, theme = $$props.theme);
+    		if ("theme" in $$props) $$invalidate(29, theme = $$props.theme);
     		if ("revealDuration" in $$props) $$invalidate(1, revealDuration = $$props.revealDuration);
-    		if ("breakpoint" in $$props) $$invalidate(29, breakpoint = $$props.breakpoint);
+    		if ("breakpoint" in $$props) $$invalidate(30, breakpoint = $$props.breakpoint);
     		if ("revealed" in $$props) $$invalidate(26, revealed = $$props.revealed);
-    		if ("disableHighlight" in $$props) $$invalidate(30, disableHighlight = $$props.disableHighlight);
+    		if ("disableHighlight" in $$props) $$invalidate(31, disableHighlight = $$props.disableHighlight);
     		if ("showCompleteMessage" in $$props) $$invalidate(2, showCompleteMessage = $$props.showCompleteMessage);
     		if ("showConfetti" in $$props) $$invalidate(3, showConfetti = $$props.showConfetti);
     		if ("showKeyboard" in $$props) $$invalidate(4, showKeyboard = $$props.showKeyboard);
     		if ("keyboardStyle" in $$props) $$invalidate(5, keyboardStyle = $$props.keyboardStyle);
-    		if ("$$scope" in $$props) $$invalidate(39, $$scope = $$props.$$scope);
+    		if ("$$scope" in $$props) $$invalidate(41, $$scope = $$props.$$scope);
     	};
 
     	$$self.$capture_state = () => ({
     		onMount,
+    		createEventDispatcher,
     		Toolbar,
     		Puzzle,
     		Clues,
@@ -6079,6 +6152,7 @@ var app = (function (Keyboard) {
     		fromPairs,
     		themeStyles: themes,
     		data,
+    		state,
     		actions,
     		theme,
     		revealDuration,
@@ -6101,13 +6175,17 @@ var app = (function (Keyboard) {
     		validated,
     		clues,
     		cells,
+    		dispatch,
     		onDataUpdate,
     		checkClues,
     		reset,
+    		setState,
     		onClear,
     		onReveal,
     		onCheck,
     		onUncheck,
+    		onCellChange,
+    		onComplete,
     		startReveal,
     		onToolbarEvent,
     		focusedCell,
@@ -6121,12 +6199,13 @@ var app = (function (Keyboard) {
 
     	$$self.$inject_state = $$props => {
     		if ("data" in $$props) $$invalidate(27, data = $$props.data);
+    		if ("state" in $$props) $$invalidate(28, state = $$props.state);
     		if ("actions" in $$props) $$invalidate(0, actions = $$props.actions);
-    		if ("theme" in $$props) $$invalidate(28, theme = $$props.theme);
+    		if ("theme" in $$props) $$invalidate(29, theme = $$props.theme);
     		if ("revealDuration" in $$props) $$invalidate(1, revealDuration = $$props.revealDuration);
-    		if ("breakpoint" in $$props) $$invalidate(29, breakpoint = $$props.breakpoint);
+    		if ("breakpoint" in $$props) $$invalidate(30, breakpoint = $$props.breakpoint);
     		if ("revealed" in $$props) $$invalidate(26, revealed = $$props.revealed);
-    		if ("disableHighlight" in $$props) $$invalidate(30, disableHighlight = $$props.disableHighlight);
+    		if ("disableHighlight" in $$props) $$invalidate(31, disableHighlight = $$props.disableHighlight);
     		if ("showCompleteMessage" in $$props) $$invalidate(2, showCompleteMessage = $$props.showCompleteMessage);
     		if ("showConfetti" in $$props) $$invalidate(3, showConfetti = $$props.showConfetti);
     		if ("showKeyboard" in $$props) $$invalidate(4, showKeyboard = $$props.showKeyboard);
@@ -6145,7 +6224,7 @@ var app = (function (Keyboard) {
     		if ("cells" in $$props) $$invalidate(14, cells = $$props.cells);
     		if ("focusedCell" in $$props) $$invalidate(15, focusedCell = $$props.focusedCell);
     		if ("cellIndexMap" in $$props) $$invalidate(16, cellIndexMap = $$props.cellIndexMap);
-    		if ("percentCorrect" in $$props) $$invalidate(42, percentCorrect = $$props.percentCorrect);
+    		if ("percentCorrect" in $$props) $$invalidate(44, percentCorrect = $$props.percentCorrect);
     		if ("isComplete" in $$props) $$invalidate(17, isComplete = $$props.isComplete);
     		if ("isDisableHighlight" in $$props) $$invalidate(18, isDisableHighlight = $$props.isDisableHighlight);
     		if ("stacked" in $$props) $$invalidate(19, stacked = $$props.stacked);
@@ -6178,14 +6257,20 @@ var app = (function (Keyboard) {
     		}
 
     		if ($$self.$$.dirty[0] & /*cells*/ 16384) {
-    			 $$invalidate(42, percentCorrect = cells.filter(d => d.answer === d.value).length / cells.length);
+    			 $$invalidate(44, percentCorrect = cells.filter(d => d.answer === d.value).length / cells.length);
     		}
 
-    		if ($$self.$$.dirty[1] & /*percentCorrect*/ 2048) {
+    		if ($$self.$$.dirty[1] & /*percentCorrect*/ 8192) {
     			 $$invalidate(17, isComplete = percentCorrect == 1);
     		}
 
-    		if ($$self.$$.dirty[0] & /*isComplete, disableHighlight*/ 1073872896) {
+    		if ($$self.$$.dirty[0] & /*isComplete, cells*/ 147456) {
+    			 if (isComplete && cells.length > 0) {
+    				onComplete();
+    			}
+    		}
+
+    		if ($$self.$$.dirty[0] & /*isComplete*/ 131072 | $$self.$$.dirty[1] & /*disableHighlight*/ 1) {
     			 $$invalidate(18, isDisableHighlight = isComplete && disableHighlight);
     		}
 
@@ -6197,11 +6282,11 @@ var app = (function (Keyboard) {
     			 ($$invalidate(26, revealed = !clues.filter(d => !d.isCorrect).length));
     		}
 
-    		if ($$self.$$.dirty[0] & /*width, breakpoint*/ 536870976) {
+    		if ($$self.$$.dirty[0] & /*width, breakpoint*/ 1073741888) {
     			 $$invalidate(19, stacked = width < breakpoint);
     		}
 
-    		if ($$self.$$.dirty[0] & /*theme*/ 268435456) {
+    		if ($$self.$$.dirty[0] & /*theme*/ 536870912) {
     			 $$invalidate(20, inlineStyles = themes[theme]);
     		}
     	};
@@ -6235,6 +6320,7 @@ var app = (function (Keyboard) {
     		onToolbarEvent,
     		revealed,
     		data,
+    		state,
     		theme,
     		breakpoint,
     		disableHighlight,
@@ -6245,6 +6331,7 @@ var app = (function (Keyboard) {
     		puzzle_cells_binding,
     		puzzle_focusedCellIndex_binding,
     		puzzle_focusedDirection_binding,
+    		cellChange_handler,
     		article_elementresize_handler,
     		$$scope
     	];
@@ -6262,12 +6349,13 @@ var app = (function (Keyboard) {
     			safe_not_equal,
     			{
     				data: 27,
+    				state: 28,
     				actions: 0,
-    				theme: 28,
+    				theme: 29,
     				revealDuration: 1,
-    				breakpoint: 29,
+    				breakpoint: 30,
     				revealed: 26,
-    				disableHighlight: 30,
+    				disableHighlight: 31,
     				showCompleteMessage: 2,
     				showConfetti: 3,
     				showKeyboard: 4,
@@ -6287,7 +6375,7 @@ var app = (function (Keyboard) {
     		const props = options.props || {};
 
     		if (/*showKeyboard*/ ctx[4] === undefined && !("showKeyboard" in props)) {
-    			console.warn("<Crossword> was created without expected prop 'showKeyboard'");
+    			console_1.warn("<Crossword> was created without expected prop 'showKeyboard'");
     		}
     	}
 
@@ -6296,6 +6384,14 @@ var app = (function (Keyboard) {
     	}
 
     	set data(value) {
+    		throw new Error("<Crossword>: Props cannot be set directly on the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
+    	}
+
+    	get state() {
+    		throw new Error("<Crossword>: Props cannot be read directly from the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
+    	}
+
+    	set state(value) {
     		throw new Error("<Crossword>: Props cannot be set directly on the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
     	}
 
@@ -6915,10 +7011,385 @@ var app = (function (Keyboard) {
     	}
     ];
 
+    var dataNYTDailyMini = [
+    	{
+    		clue: "The 1% of 1% milk",
+    		answer: "FAT",
+    		direction: "across",
+    		x: 2,
+    		y: 0
+    	},
+    	{
+    		clue: "Flicker of light",
+    		answer: "GLINT",
+    		direction: "across",
+    		x: 0,
+    		y: 1
+    	},
+    	{
+    		clue: "Really neat",
+    		answer: "NIFTY",
+    		direction: "across",
+    		x: 0,
+    		y: 2
+    	},
+    	{
+    		clue: "\"__ we meet again\"",
+    		answer: "UNTIL",
+    		direction: "across",
+    		x: 0,
+    		y: 3
+    	},
+    	{
+    		clue: "It's way over your head",
+    		answer: "SKY",
+    		direction: "across",
+    		x: 0,
+    		y: 4
+    	},
+    	{
+    		clue: "Point bonus for using all seven tiles in Scrabble",
+    		answer: "FIFTY",
+    		direction: "down",
+    		x: 2,
+    		y: 0
+    	},
+    	{
+    		clue: "Opposite of pro-",
+    		answer: "ANTI",
+    		direction: "down",
+    		x: 3,
+    		y: 0
+    	},
+    	{
+    		clue: "Texter's \"gotta run\"",
+    		answer: "TTYL",
+    		direction: "down",
+    		x: 4,
+    		y: 0
+    	},
+    	{
+    		clue: "Migratory antelopes",
+    		answer: "GNUS",
+    		direction: "down",
+    		x: 0,
+    		y: 1
+    	},
+    	{
+    		clue: "Clickable part of a webpage",
+    		answer: "LINK",
+    		direction: "down",
+    		x: 1,
+    		y: 1
+    	}
+    ];
+
+    var cells = [
+    	{
+    		id: "2-0",
+    		number: 1,
+    		clueNumbers: {
+    			down: 1,
+    			across: 1
+    		},
+    		x: 2,
+    		y: 0,
+    		value: "F",
+    		answer: "F",
+    		custom: "",
+    		index: 0
+    	},
+    	{
+    		id: "3-0",
+    		number: 2,
+    		clueNumbers: {
+    			across: 1,
+    			down: 2
+    		},
+    		x: 3,
+    		y: 0,
+    		value: "A",
+    		answer: "A",
+    		custom: "",
+    		index: 1
+    	},
+    	{
+    		id: "4-0",
+    		number: 3,
+    		clueNumbers: {
+    			across: 1,
+    			down: 3
+    		},
+    		x: 4,
+    		y: 0,
+    		value: "",
+    		answer: "T",
+    		custom: "",
+    		index: 2
+    	},
+    	{
+    		id: "0-1",
+    		number: 4,
+    		clueNumbers: {
+    			down: 4,
+    			across: 4
+    		},
+    		x: 0,
+    		y: 1,
+    		value: "",
+    		answer: "G",
+    		custom: "",
+    		index: 3
+    	},
+    	{
+    		id: "1-1",
+    		number: 5,
+    		clueNumbers: {
+    			across: 4,
+    			down: 5
+    		},
+    		x: 1,
+    		y: 1,
+    		value: "",
+    		answer: "L",
+    		custom: "",
+    		index: 4
+    	},
+    	{
+    		id: "2-1",
+    		number: "",
+    		clueNumbers: {
+    			down: 1,
+    			across: 4
+    		},
+    		x: 2,
+    		y: 1,
+    		value: "",
+    		answer: "I",
+    		custom: "",
+    		index: 5
+    	},
+    	{
+    		id: "3-1",
+    		number: "",
+    		clueNumbers: {
+    			down: 2,
+    			across: 4
+    		},
+    		x: 3,
+    		y: 1,
+    		value: "",
+    		answer: "N",
+    		custom: "",
+    		index: 6
+    	},
+    	{
+    		id: "4-1",
+    		number: "",
+    		clueNumbers: {
+    			down: 3,
+    			across: 4
+    		},
+    		x: 4,
+    		y: 1,
+    		value: "",
+    		answer: "T",
+    		custom: "",
+    		index: 7
+    	},
+    	{
+    		id: "0-2",
+    		number: 6,
+    		clueNumbers: {
+    			down: 4,
+    			across: 6
+    		},
+    		x: 0,
+    		y: 2,
+    		value: "",
+    		answer: "N",
+    		custom: "",
+    		index: 8
+    	},
+    	{
+    		id: "1-2",
+    		number: "",
+    		clueNumbers: {
+    			down: 5,
+    			across: 6
+    		},
+    		x: 1,
+    		y: 2,
+    		value: "",
+    		answer: "I",
+    		custom: "",
+    		index: 9
+    	},
+    	{
+    		id: "2-2",
+    		number: "",
+    		clueNumbers: {
+    			down: 1,
+    			across: 6
+    		},
+    		x: 2,
+    		y: 2,
+    		value: "",
+    		answer: "F",
+    		custom: "",
+    		index: 10
+    	},
+    	{
+    		id: "3-2",
+    		number: "",
+    		clueNumbers: {
+    			down: 2,
+    			across: 6
+    		},
+    		x: 3,
+    		y: 2,
+    		value: "",
+    		answer: "T",
+    		custom: "",
+    		index: 11
+    	},
+    	{
+    		id: "4-2",
+    		number: "",
+    		clueNumbers: {
+    			down: 3,
+    			across: 6
+    		},
+    		x: 4,
+    		y: 2,
+    		value: "",
+    		answer: "Y",
+    		custom: "",
+    		index: 12
+    	},
+    	{
+    		id: "0-3",
+    		number: 7,
+    		clueNumbers: {
+    			down: 4,
+    			across: 7
+    		},
+    		x: 0,
+    		y: 3,
+    		value: "",
+    		answer: "U",
+    		custom: "",
+    		index: 13
+    	},
+    	{
+    		id: "1-3",
+    		number: "",
+    		clueNumbers: {
+    			down: 5,
+    			across: 7
+    		},
+    		x: 1,
+    		y: 3,
+    		value: "",
+    		answer: "N",
+    		custom: "",
+    		index: 14
+    	},
+    	{
+    		id: "2-3",
+    		number: "",
+    		clueNumbers: {
+    			down: 1,
+    			across: 7
+    		},
+    		x: 2,
+    		y: 3,
+    		value: "",
+    		answer: "T",
+    		custom: "",
+    		index: 15
+    	},
+    	{
+    		id: "3-3",
+    		number: "",
+    		clueNumbers: {
+    			down: 2,
+    			across: 7
+    		},
+    		x: 3,
+    		y: 3,
+    		value: "",
+    		answer: "I",
+    		custom: "",
+    		index: 16
+    	},
+    	{
+    		id: "4-3",
+    		number: "",
+    		clueNumbers: {
+    			down: 3,
+    			across: 7
+    		},
+    		x: 4,
+    		y: 3,
+    		value: "",
+    		answer: "L",
+    		custom: "",
+    		index: 17
+    	},
+    	{
+    		id: "0-4",
+    		number: 8,
+    		clueNumbers: {
+    			down: 4,
+    			across: 8
+    		},
+    		x: 0,
+    		y: 4,
+    		value: "",
+    		answer: "S",
+    		custom: "",
+    		index: 18
+    	},
+    	{
+    		id: "1-4",
+    		number: "",
+    		clueNumbers: {
+    			down: 5,
+    			across: 8
+    		},
+    		x: 1,
+    		y: 4,
+    		value: "",
+    		answer: "K",
+    		custom: "",
+    		index: 19
+    	},
+    	{
+    		id: "2-4",
+    		number: "",
+    		clueNumbers: {
+    			down: 1,
+    			across: 8
+    		},
+    		x: 2,
+    		y: 4,
+    		value: "",
+    		answer: "Y",
+    		custom: "",
+    		index: 20
+    	}
+    ];
+    var dataNYTDailyMiniState = {
+    	cells: cells
+    };
+
     /* App.svelte generated by Svelte v3.29.0 */
+
+    const { console: console_1$1 } = globals;
     const file$a = "App.svelte";
 
-    // (29:6) <div         class="toolbar"         slot="toolbar"         let:onClear         let:onReveal         style="background: #333; padding: 1em; margin: 1em 0;"       >
+    // (55:6) <div         class="toolbar"         slot="toolbar"         let:onClear         let:onReveal         style="background: #333; padding: 1em; margin: 1em 0;"       >
     function create_toolbar_slot(ctx) {
     	let div;
     	let button0;
@@ -6958,17 +7429,17 @@ var app = (function (Keyboard) {
     			set_style(button0, "font-size", "1.5em");
     			set_style(button0, "background-color", "#888");
     			attr_dev(button0, "class", "svelte-pu4ii9");
-    			add_location(button0, file$a, 35, 8, 878);
+    			add_location(button0, file$a, 61, 8, 1577);
     			set_style(button1, "font-size", "1.5em");
     			set_style(button1, "background-color", "#888");
     			attr_dev(button1, "class", "svelte-pu4ii9");
-    			add_location(button1, file$a, 39, 8, 1016);
+    			add_location(button1, file$a, 65, 8, 1715);
     			attr_dev(div, "class", "toolbar");
     			attr_dev(div, "slot", "toolbar");
     			set_style(div, "background", "#333");
     			set_style(div, "padding", "1em");
     			set_style(div, "margin", "1em 0");
-    			add_location(div, file$a, 28, 6, 706);
+    			add_location(div, file$a, 54, 6, 1405);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, div, anchor);
@@ -7019,14 +7490,14 @@ var app = (function (Keyboard) {
     		block,
     		id: create_toolbar_slot.name,
     		type: "slot",
-    		source: "(29:6) <div         class=\\\"toolbar\\\"         slot=\\\"toolbar\\\"         let:onClear         let:onReveal         style=\\\"background: #333; padding: 1em; margin: 1em 0;\\\"       >",
+    		source: "(55:6) <div         class=\\\"toolbar\\\"         slot=\\\"toolbar\\\"         let:onClear         let:onReveal         style=\\\"background: #333; padding: 1em; margin: 1em 0;\\\"       >",
     		ctx
     	});
 
     	return block;
     }
 
-    // (45:6) <div slot="message">
+    // (71:6) <div slot="message">
     function create_message_slot(ctx) {
     	let div;
     	let h3;
@@ -7057,12 +7528,12 @@ var app = (function (Keyboard) {
     			this.h();
     		},
     		h: function hydrate() {
-    			add_location(h3, file$a, 45, 8, 1195);
+    			add_location(h3, file$a, 71, 8, 1894);
     			attr_dev(img, "alt", "celebration");
     			if (img.src !== (img_src_value = "https://media3.giphy.com/media/QpOZPQQ2wbjOM/giphy.gif")) attr_dev(img, "src", img_src_value);
-    			add_location(img, file$a, 46, 8, 1227);
+    			add_location(img, file$a, 72, 8, 1926);
     			attr_dev(div, "slot", "message");
-    			add_location(div, file$a, 44, 6, 1166);
+    			add_location(div, file$a, 70, 6, 1865);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, div, anchor);
@@ -7080,14 +7551,14 @@ var app = (function (Keyboard) {
     		block,
     		id: create_message_slot.name,
     		type: "slot",
-    		source: "(45:6) <div slot=\\\"message\\\">",
+    		source: "(71:6) <div slot=\\\"message\\\">",
     		ctx
     	});
 
     	return block;
     }
 
-    // (28:4) <Crossword data="{dataNYTDaily}">
+    // (54:4) <Crossword data="{dataNYTDaily}">
     function create_default_slot$1(ctx) {
     	let t;
 
@@ -7111,7 +7582,7 @@ var app = (function (Keyboard) {
     		block,
     		id: create_default_slot$1.name,
     		type: "slot",
-    		source: "(28:4) <Crossword data=\\\"{dataNYTDaily}\\\">",
+    		source: "(54:4) <Crossword data=\\\"{dataNYTDaily}\\\">",
     		ctx
     	});
 
@@ -7144,14 +7615,39 @@ var app = (function (Keyboard) {
     	let t9;
     	let t10;
     	let crossword1;
+    	let t11;
+    	let section2;
+    	let div2;
+    	let h22;
+    	let a3;
+    	let t12;
+    	let t13;
+    	let p2;
+    	let t14;
+    	let t15;
+    	let crossword2;
     	let current;
 
     	crossword0 = new Crossword({
-    			props: { data: dataNYTDaily },
+    			props: {
+    				data: dataNYTDailyMini,
+    				state: dataNYTDailyMiniState
+    			},
     			$$inline: true
     		});
 
+    	crossword0.$on("complete", onComplete);
+    	crossword0.$on("cellChange", onCellChange);
+
     	crossword1 = new Crossword({
+    			props: {
+    				data: dataNYTDaily,
+    				actions: ["clear", "reveal", "timer"]
+    			},
+    			$$inline: true
+    		});
+
+    	crossword2 = new Crossword({
     			props: {
     				data: dataNYTDaily,
     				$$slots: {
@@ -7189,12 +7685,23 @@ var app = (function (Keyboard) {
     			div1 = element("div");
     			h21 = element("h2");
     			a2 = element("a");
-    			t7 = text("Slots");
+    			t7 = text("With TIimer");
     			t8 = space();
     			p1 = element("p");
-    			t9 = text("Custom slots for the toolbar and completion message.");
+    			t9 = text("With timer");
     			t10 = space();
     			create_component(crossword1.$$.fragment);
+    			t11 = space();
+    			section2 = element("section");
+    			div2 = element("div");
+    			h22 = element("h2");
+    			a3 = element("a");
+    			t12 = text("Slots");
+    			t13 = space();
+    			p2 = element("p");
+    			t14 = text("Custom slots for the toolbar and completion message.");
+    			t15 = space();
+    			create_component(crossword2.$$.fragment);
     			this.h();
     		},
     		l: function claim(nodes) {
@@ -7234,51 +7741,84 @@ var app = (function (Keyboard) {
     			var h21_nodes = children(h21);
     			a2 = claim_element(h21_nodes, "A", { href: true, class: true });
     			var a2_nodes = children(a2);
-    			t7 = claim_text(a2_nodes, "Slots");
+    			t7 = claim_text(a2_nodes, "With TIimer");
     			a2_nodes.forEach(detach_dev);
     			h21_nodes.forEach(detach_dev);
     			t8 = claim_space(div1_nodes);
     			p1 = claim_element(div1_nodes, "P", { class: true });
     			var p1_nodes = children(p1);
-    			t9 = claim_text(p1_nodes, "Custom slots for the toolbar and completion message.");
+    			t9 = claim_text(p1_nodes, "With timer");
     			p1_nodes.forEach(detach_dev);
     			div1_nodes.forEach(detach_dev);
     			t10 = claim_space(section1_nodes);
     			claim_component(crossword1.$$.fragment, section1_nodes);
     			section1_nodes.forEach(detach_dev);
+    			t11 = claim_space(article_nodes);
+    			section2 = claim_element(article_nodes, "SECTION", { id: true, class: true });
+    			var section2_nodes = children(section2);
+    			div2 = claim_element(section2_nodes, "DIV", { class: true });
+    			var div2_nodes = children(div2);
+    			h22 = claim_element(div2_nodes, "H2", { class: true });
+    			var h22_nodes = children(h22);
+    			a3 = claim_element(h22_nodes, "A", { href: true, class: true });
+    			var a3_nodes = children(a3);
+    			t12 = claim_text(a3_nodes, "Slots");
+    			a3_nodes.forEach(detach_dev);
+    			h22_nodes.forEach(detach_dev);
+    			t13 = claim_space(div2_nodes);
+    			p2 = claim_element(div2_nodes, "P", { class: true });
+    			var p2_nodes = children(p2);
+    			t14 = claim_text(p2_nodes, "Custom slots for the toolbar and completion message.");
+    			p2_nodes.forEach(detach_dev);
+    			div2_nodes.forEach(detach_dev);
+    			t15 = claim_space(section2_nodes);
+    			claim_component(crossword2.$$.fragment, section2_nodes);
+    			section2_nodes.forEach(detach_dev);
     			article_nodes.forEach(detach_dev);
     			this.h();
     		},
     		h: function hydrate() {
     			attr_dev(a0, "href", "#default");
     			attr_dev(a0, "class", "svelte-pu4ii9");
-    			add_location(a0, file$a, 9, 10, 192);
+    			add_location(a0, file$a, 22, 10, 531);
     			attr_dev(h20, "class", "svelte-pu4ii9");
-    			add_location(h20, file$a, 9, 6, 188);
+    			add_location(h20, file$a, 22, 6, 527);
     			attr_dev(a1, "href", "https://www.nytimes.com/crosswords/game/daily/2020/10/21");
     			attr_dev(a1, "class", "svelte-pu4ii9");
-    			add_location(a1, file$a, 12, 8, 264);
+    			add_location(a1, file$a, 25, 8, 603);
     			attr_dev(p0, "class", "svelte-pu4ii9");
-    			add_location(p0, file$a, 10, 6, 242);
+    			add_location(p0, file$a, 23, 6, 581);
     			attr_dev(div0, "class", "info svelte-pu4ii9");
-    			add_location(div0, file$a, 8, 4, 163);
+    			add_location(div0, file$a, 21, 4, 502);
     			attr_dev(section0, "id", "default");
     			attr_dev(section0, "class", "svelte-pu4ii9");
-    			add_location(section0, file$a, 7, 2, 136);
-    			attr_dev(a2, "href", "#slots");
+    			add_location(section0, file$a, 20, 2, 475);
+    			attr_dev(a2, "href", "#simple");
     			attr_dev(a2, "class", "svelte-pu4ii9");
-    			add_location(a2, file$a, 24, 10, 553);
+    			add_location(a2, file$a, 37, 10, 995);
     			attr_dev(h21, "class", "svelte-pu4ii9");
-    			add_location(h21, file$a, 24, 6, 549);
+    			add_location(h21, file$a, 37, 6, 991);
     			attr_dev(p1, "class", "svelte-pu4ii9");
-    			add_location(p1, file$a, 25, 6, 591);
+    			add_location(p1, file$a, 38, 6, 1040);
     			attr_dev(div1, "class", "info svelte-pu4ii9");
-    			add_location(div1, file$a, 23, 4, 524);
-    			attr_dev(section1, "id", "slots");
+    			add_location(div1, file$a, 36, 4, 966);
+    			attr_dev(section1, "id", "simple-customization");
     			attr_dev(section1, "class", "svelte-pu4ii9");
-    			add_location(section1, file$a, 22, 2, 499);
+    			add_location(section1, file$a, 35, 2, 926);
+    			attr_dev(a3, "href", "#slots");
+    			attr_dev(a3, "class", "svelte-pu4ii9");
+    			add_location(a3, file$a, 50, 10, 1252);
+    			attr_dev(h22, "class", "svelte-pu4ii9");
+    			add_location(h22, file$a, 50, 6, 1248);
+    			attr_dev(p2, "class", "svelte-pu4ii9");
+    			add_location(p2, file$a, 51, 6, 1290);
+    			attr_dev(div2, "class", "info svelte-pu4ii9");
+    			add_location(div2, file$a, 49, 4, 1223);
+    			attr_dev(section2, "id", "slots");
+    			attr_dev(section2, "class", "svelte-pu4ii9");
+    			add_location(section2, file$a, 48, 2, 1198);
     			attr_dev(article, "class", "svelte-pu4ii9");
-    			add_location(article, file$a, 5, 0, 123);
+    			add_location(article, file$a, 19, 0, 463);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, article, anchor);
@@ -7306,32 +7846,46 @@ var app = (function (Keyboard) {
     			append_dev(p1, t9);
     			append_dev(section1, t10);
     			mount_component(crossword1, section1, null);
+    			append_dev(article, t11);
+    			append_dev(article, section2);
+    			append_dev(section2, div2);
+    			append_dev(div2, h22);
+    			append_dev(h22, a3);
+    			append_dev(a3, t12);
+    			append_dev(div2, t13);
+    			append_dev(div2, p2);
+    			append_dev(p2, t14);
+    			append_dev(section2, t15);
+    			mount_component(crossword2, section2, null);
     			current = true;
     		},
     		p: function update(ctx, [dirty]) {
-    			const crossword1_changes = {};
+    			const crossword2_changes = {};
 
     			if (dirty & /*$$scope, onReveal, onClear*/ 7) {
-    				crossword1_changes.$$scope = { dirty, ctx };
+    				crossword2_changes.$$scope = { dirty, ctx };
     			}
 
-    			crossword1.$set(crossword1_changes);
+    			crossword2.$set(crossword2_changes);
     		},
     		i: function intro(local) {
     			if (current) return;
     			transition_in(crossword0.$$.fragment, local);
     			transition_in(crossword1.$$.fragment, local);
+    			transition_in(crossword2.$$.fragment, local);
     			current = true;
     		},
     		o: function outro(local) {
     			transition_out(crossword0.$$.fragment, local);
     			transition_out(crossword1.$$.fragment, local);
+    			transition_out(crossword2.$$.fragment, local);
     			current = false;
     		},
     		d: function destroy(detaching) {
     			if (detaching) detach_dev(article);
     			destroy_component(crossword0);
     			destroy_component(crossword1);
+    			destroy_component(crossword2);
     		}
     	};
 
@@ -7346,16 +7900,32 @@ var app = (function (Keyboard) {
     	return block;
     }
 
+    function onComplete() {
+    	console.log("onComplete");
+    }
+
+    function onCellChange(event) {
+    	console.log("onCellChange", event);
+    }
+
     function instance$a($$self, $$props, $$invalidate) {
     	let { $$slots: slots = {}, $$scope } = $$props;
     	validate_slots("App", slots, []);
     	const writable_props = [];
 
     	Object.keys($$props).forEach(key => {
-    		if (!~writable_props.indexOf(key) && key.slice(0, 2) !== "$$") console.warn(`<App> was created with unknown prop '${key}'`);
+    		if (!~writable_props.indexOf(key) && key.slice(0, 2) !== "$$") console_1$1.warn(`<App> was created with unknown prop '${key}'`);
     	});
 
-    	$$self.$capture_state = () => ({ Crossword, dataNYTDaily });
+    	$$self.$capture_state = () => ({
+    		Crossword,
+    		dataNYTDaily,
+    		dataNYTDailyMini,
+    		dataNYTDailyMiniState,
+    		onComplete,
+    		onCellChange
+    	});
+
     	return [];
     }
 

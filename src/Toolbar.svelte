@@ -1,5 +1,6 @@
 <script>
   import { createEventDispatcher } from "svelte";
+
   const dispatch = createEventDispatcher();
 
   export let actions = ["clear", "reveal", "check", "uncheck"];

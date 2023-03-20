@@ -1,10 +1,23 @@
 <script>
   import Crossword from "../src/Crossword.svelte";
   import dataNYTDaily from "./data/nyt-daily.json";
+  import dataNYTDailyMini from "./data/nyt-mini.json";
+  import dataNYTDailyMiniState from "./data/nyt-mini-state.json";
+  // import savedState from "./savedState.js";
+
+  // console.log(savedState);
+
+  function onComplete() {
+    console.log('onComplete');
+  }
+
+  function onCellChange(event) {
+    console.log('onCellChange', event);
+  }
+
 </script>
 
 <article>
-
   <section id="default">
     <div class="info">
       <h2><a href="#default">Default Example</a></h2>
@@ -17,7 +30,20 @@
 
       </p>
     </div>
-    <Crossword data="{dataNYTDaily}" />
+    <Crossword data="{dataNYTDailyMini}" on:complete={onComplete} on:cellChange={onCellChange} state={dataNYTDailyMiniState} />
+  </section>
+
+  <section id="simple-customization">
+    <div class="info">
+      <h2><a href="#simple">With TIimer</a></h2>
+      <p>
+        With timer
+      </p>
+    </div>
+    <Crossword
+      data="{dataNYTDaily}"
+      actions="{["clear", "reveal", "timer"]}"
+    />
   </section>
 
   <section id="slots">

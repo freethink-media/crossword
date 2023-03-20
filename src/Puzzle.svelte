@@ -1,5 +1,5 @@
 <script>
-  import { onMount } from "svelte";
+  import { onMount, createEventDispatcher } from "svelte";
   import Keyboard from "svelte-keyboard";
   import getSecondarilyFocusedCells from "./helpers/getSecondarilyFocusedCells.js";
   import getCellAfterDiff from "./helpers/getCellAfterDiff.js";
@@ -29,6 +29,8 @@
   let secondarilyFocusedCells = [];
   let isMobile = false;
   let isPuzzleFocused = false;
+
+  const dispatch = new createEventDispatcher();
 
   const numberOfStatesInHistory = 10;
   $: w = Math.max(...cells.map((d) => d.x)) + 1;
@@ -80,6 +82,15 @@
     );
     cellsHistoryIndex = 0;
     cells = newCells;
+
+    dispatch(
+      'cellChange', 
+      {
+        cells,
+        index, 
+        newValue
+      }
+    );
 
     if (isAtEndOfClue && diff > 0) {
       onFocusClueDiff(diff);
