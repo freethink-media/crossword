@@ -122,13 +122,11 @@
           value: currCell.value
         }
       });
-      console.log('cells', cells);
+      // check if game is complete 
+      // case: completed state passed in
       percentCorrect = cells.filter((d) => d.answer === d.value).length / cells.length;
-      console.log('percentCorrect', percentCorrect);
       isComplete = percentCorrect == 1;
-      console.log('isComplete', isComplete);
       if (isComplete && cells.length > 0) {
-        console.log('onComplete');
         onComplete();
       };
     }
