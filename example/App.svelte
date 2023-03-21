@@ -3,9 +3,6 @@
   import dataNYTDaily from "./data/nyt-daily.json";
   import dataNYTDailyMini from "./data/nyt-mini.json";
   import dataNYTDailyMiniState from "./data/nyt-mini-state.json";
-  // import savedState from "./savedState.js";
-
-  // console.log(savedState);
 
   function onComplete() {
     console.log('onComplete');

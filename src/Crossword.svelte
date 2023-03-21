@@ -40,7 +40,6 @@
   const dispatch = createEventDispatcher();
 
   const onDataUpdate = () => {
-    console.log('onDataUpdate');
     originalClues = createClues(data);
     validated = validateClues(originalClues);
     clues = originalClues.map((d) => ({ ...d }));
@@ -113,7 +112,7 @@
    * @param state
    */
   function setState(state) {
-    if (state.cells.length) {
+    if (state.cells && state.cells.length) {
       cells = cells.map((cell) => {
         const currCell = state.cells.find(obj => {
           return obj.id === cell.id
