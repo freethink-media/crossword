@@ -122,6 +122,12 @@
           value: currCell.value
         }
       });
+
+      percentCorrect = cells.filter((d) => d.answer === d.value).length / cells.length;
+      isComplete = percentCorrect == 1;
+      if (isComplete && cells.length > 0) {
+        onComplete();
+      };
     }
   }
 
