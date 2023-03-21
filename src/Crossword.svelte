@@ -122,7 +122,7 @@
           value: currCell.value
         }
       });
-
+      console.log('cells', cells);
       percentCorrect = cells.filter((d) => d.answer === d.value).length / cells.length;
       console.log('percentCorrect', percentCorrect);
       isComplete = percentCorrect == 1;
