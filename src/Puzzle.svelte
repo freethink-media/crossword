@@ -20,6 +20,7 @@
   export let showKeyboard;
   export let isLoaded;
   export let keyboardStyle;
+  export let isComplete = true;
 
   let element;
   let cellsHistoryIndex = 0;
@@ -212,6 +213,7 @@
       <Cell
         x="{x}"
         y="{y}"
+        isComplete="{isComplete}"
         index="{index}"
         value="{value}"
         answer="{answer}"

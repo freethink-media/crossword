@@ -17,6 +17,7 @@
   export let onMoveFocus = () => {};
   export let onFlipDirection = () => {};
   export let onHistoricalChange = () => {};
+  export let isComplete = true;
 
   let element;
 
@@ -30,6 +31,9 @@
   }
 
   function onKeydown(e) {
+    if (isComplete) {
+      return;
+    }
     if (e.ctrlKey && e.key.toLowerCase() == "z") {
       onHistoricalChange(e.shiftKey ? 1 : -1);
     }
@@ -77,6 +81,9 @@
   }
 
   function onClick() {
+    if (isComplete) {
+      return;
+    }
     onFocusCell(index);
   }
 

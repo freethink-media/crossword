@@ -225,6 +225,7 @@
         stacked="{stacked}"
         isLoaded="{isLoaded}"
         keyboardStyle="{keyboardStyle}"
+        isComplete={isComplete}
         on:cellChange
         bind:cells
         bind:focusedCellIndex
