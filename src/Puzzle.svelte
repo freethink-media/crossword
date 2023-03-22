@@ -270,6 +270,7 @@
 
   .keyboard {
     order: 3;
+    margin-top: 15px;
   }
 
   @media only screen and (max-width: 720px) {

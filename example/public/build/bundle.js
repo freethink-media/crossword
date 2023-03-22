@@ -2588,7 +2588,7 @@ var app = (function (Keyboard) {
     			this.h();
     		},
     		h: function hydrate() {
-    			attr_dev(div, "class", "keyboard svelte-ce6hth");
+    			attr_dev(div, "class", "keyboard svelte-1ybm8ke");
     			add_location(div, file$8, 236, 4, 7113);
     		},
     		m: function mount(target, anchor) {
@@ -2680,9 +2680,9 @@ var app = (function (Keyboard) {
     		},
     		h: function hydrate() {
     			attr_dev(svg, "viewBox", svg_viewBox_value = "0 0 " + /*w*/ ctx[14] + " " + /*h*/ ctx[13]);
-    			attr_dev(svg, "class", "svelte-ce6hth");
+    			attr_dev(svg, "class", "svelte-1ybm8ke");
     			add_location(svg, file$8, 210, 2, 6193);
-    			attr_dev(section, "class", "puzzle svelte-ce6hth");
+    			attr_dev(section, "class", "puzzle svelte-1ybm8ke");
     			toggle_class(section, "stacked", /*stacked*/ ctx[5]);
     			toggle_class(section, "is-loaded", /*isLoaded*/ ctx[7]);
     			add_location(section, file$8, 205, 0, 6093);
