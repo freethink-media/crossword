@@ -20,7 +20,7 @@
   export let disableHighlight = false;
   export let showCompleteMessage = true;
   export let showConfetti = true;
-  export let showKeyboard;
+  export let showKeyboard = undefined;
   export let keyboardStyle = "outline";
 
   let width = 0;

@@ -17,7 +17,7 @@
   export let isDisableHighlight;
   export let stacked;
   export let revealDuration = 0;
-  export let showKeyboard;
+  export let showKeyboard = undefined;
   export let isLoaded;
   export let keyboardStyle;
   export let isComplete = true;
