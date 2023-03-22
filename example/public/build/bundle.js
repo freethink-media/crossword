@@ -2558,7 +2558,7 @@ var app = (function (Keyboard) {
     	return block;
     }
 
-    // (237:0) {#if keyboardVisible}
+    // (236:2) {#if keyboardVisible}
     function create_if_block$2(ctx) {
     	let div;
     	let keyboard;
@@ -2589,7 +2589,7 @@ var app = (function (Keyboard) {
     		},
     		h: function hydrate() {
     			attr_dev(div, "class", "keyboard svelte-ce6hth");
-    			add_location(div, file$8, 237, 2, 7120);
+    			add_location(div, file$8, 236, 4, 7113);
     		},
     		m: function mount(target, anchor) {
     			insert_hydration_dev(target, div, anchor);
@@ -2620,7 +2620,7 @@ var app = (function (Keyboard) {
     		block,
     		id: create_if_block$2.name,
     		type: "if",
-    		source: "(237:0) {#if keyboardVisible}",
+    		source: "(236:2) {#if keyboardVisible}",
     		ctx
     	});
 
@@ -2632,7 +2632,6 @@ var app = (function (Keyboard) {
     	let svg;
     	let svg_viewBox_value;
     	let t;
-    	let if_block_anchor;
     	let current;
     	let mounted;
     	let dispose;
@@ -2661,7 +2660,6 @@ var app = (function (Keyboard) {
 
     			t = space();
     			if (if_block) if_block.c();
-    			if_block_anchor = empty();
     			this.h();
     		},
     		l: function claim(nodes) {
@@ -2675,10 +2673,9 @@ var app = (function (Keyboard) {
     			}
 
     			svg_nodes.forEach(detach_dev);
+    			t = claim_space(section_nodes);
+    			if (if_block) if_block.l(section_nodes);
     			section_nodes.forEach(detach_dev);
-    			t = claim_space(nodes);
-    			if (if_block) if_block.l(nodes);
-    			if_block_anchor = empty();
     			this.h();
     		},
     		h: function hydrate() {
@@ -2700,10 +2697,9 @@ var app = (function (Keyboard) {
     				}
     			}
 
+    			append_hydration_dev(section, t);
+    			if (if_block) if_block.m(section, null);
     			/*section_binding*/ ctx[28](section);
-    			insert_hydration_dev(target, t, anchor);
-    			if (if_block) if_block.m(target, anchor);
-    			insert_hydration_dev(target, if_block_anchor, anchor);
     			current = true;
 
     			if (!mounted) {
@@ -2744,14 +2740,6 @@ var app = (function (Keyboard) {
     				attr_dev(svg, "viewBox", svg_viewBox_value);
     			}
 
-    			if (!current || dirty[0] & /*stacked*/ 32) {
-    				toggle_class(section, "stacked", /*stacked*/ ctx[5]);
-    			}
-
-    			if (!current || dirty[0] & /*isLoaded*/ 128) {
-    				toggle_class(section, "is-loaded", /*isLoaded*/ ctx[7]);
-    			}
-
     			if (/*keyboardVisible*/ ctx[12]) {
     				if (if_block) {
     					if_block.p(ctx, dirty);
@@ -2763,7 +2751,7 @@ var app = (function (Keyboard) {
     					if_block = create_if_block$2(ctx);
     					if_block.c();
     					transition_in(if_block, 1);
-    					if_block.m(if_block_anchor.parentNode, if_block_anchor);
+    					if_block.m(section, null);
     				}
     			} else if (if_block) {
     				group_outros();
@@ -2773,6 +2761,14 @@ var app = (function (Keyboard) {
     				});
 
     				check_outros();
+    			}
+
+    			if (!current || dirty[0] & /*stacked*/ 32) {
+    				toggle_class(section, "stacked", /*stacked*/ ctx[5]);
+    			}
+
+    			if (!current || dirty[0] & /*isLoaded*/ 128) {
+    				toggle_class(section, "is-loaded", /*isLoaded*/ ctx[7]);
     			}
     		},
     		i: function intro(local) {
@@ -2798,10 +2794,8 @@ var app = (function (Keyboard) {
     		d: function destroy(detaching) {
     			if (detaching) detach_dev(section);
     			destroy_each(each_blocks, detaching);
+    			if (if_block) if_block.d();
     			/*section_binding*/ ctx[28](null);
-    			if (detaching) detach_dev(t);
-    			if (if_block) if_block.d(detaching);
-    			if (detaching) detach_dev(if_block_anchor);
     			mounted = false;
     			dispose();
     		}

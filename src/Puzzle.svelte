@@ -232,16 +232,16 @@
         onHistoricalChange="{onHistoricalChange}" />
     {/each}
   </svg>
-</section>
 
-{#if keyboardVisible}
-  <div class="keyboard">
-    <Keyboard
-      layout="crossword"
-      style="{keyboardStyle}"
-      on:keydown="{onKeydown}" />
-  </div>
-{/if}
+  {#if keyboardVisible}
+    <div class="keyboard">
+      <Keyboard
+        layout="crossword"
+        style="{keyboardStyle}"
+        on:keydown="{onKeydown}" />
+    </div>
+  {/if}
+</section>
 
 <style>
   section {
