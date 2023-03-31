@@ -1,5 +1,6 @@
 <script>
   import { onMount, createEventDispatcher } from "svelte";
+  import { tick } from "svelte/internal";
   import Toolbar from "./Toolbar.svelte";
   import Puzzle from "./Puzzle.svelte";
   import Clues from "./Clues.svelte";
@@ -141,13 +142,14 @@
     }));
   }
 
-  function onReveal() {
+  async function onReveal() {
     if (revealed) return true;
     reset();
     cells = cells.map((cell) => ({
       ...cell,
       value: cell.answer,
     }));
+    await tick();
     startReveal();
     dispatch('onReveal', {
 			cells
