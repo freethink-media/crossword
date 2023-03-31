@@ -5686,7 +5686,7 @@ var app = (function (Keyboard) {
     	onUncheck: /*onUncheck*/ ctx[24]
     });
 
-    // (191:0) {#if validated}
+    // (194:0) {#if validated}
     function create_if_block(ctx) {
     	let article;
     	let t0;
@@ -5822,11 +5822,11 @@ var app = (function (Keyboard) {
     			attr_dev(div, "class", "play svelte-186p9qm");
     			toggle_class(div, "stacked", /*stacked*/ ctx[18]);
     			toggle_class(div, "is-loaded", /*isLoaded*/ ctx[13]);
-    			add_location(div, file$1, 204, 4, 5240);
+    			add_location(div, file$1, 207, 4, 5282);
     			attr_dev(article, "class", "svelte-crossword svelte-186p9qm");
     			attr_dev(article, "style", /*inlineStyles*/ ctx[17]);
     			add_render_callback(() => /*article_elementresize_handler*/ ctx[41].call(article));
-    			add_location(article, file$1, 191, 2, 4918);
+    			add_location(article, file$1, 194, 2, 4960);
     		},
     		m: function mount(target, anchor) {
     			insert_hydration_dev(target, article, anchor);
@@ -5988,14 +5988,14 @@ var app = (function (Keyboard) {
     		block,
     		id: create_if_block.name,
     		type: "if",
-    		source: "(191:0) {#if validated}",
+    		source: "(194:0) {#if validated}",
     		ctx
     	});
 
     	return block;
     }
 
-    // (201:30)        
+    // (204:30)        
     function fallback_block_1(ctx) {
     	let toolbar;
     	let current;
@@ -6041,14 +6041,14 @@ var app = (function (Keyboard) {
     		block,
     		id: fallback_block_1.name,
     		type: "fallback",
-    		source: "(201:30)        ",
+    		source: "(204:30)        ",
     		ctx
     	});
 
     	return block;
     }
 
-    // (233:4) {#if isComplete && !isRevealing && showCompleteMessage}
+    // (236:4) {#if isComplete && !isRevealing && showCompleteMessage}
     function create_if_block_1(ctx) {
     	let completedmessage;
     	let current;
@@ -6101,14 +6101,14 @@ var app = (function (Keyboard) {
     		block,
     		id: create_if_block_1.name,
     		type: "if",
-    		source: "(233:4) {#if isComplete && !isRevealing && showCompleteMessage}",
+    		source: "(236:4) {#if isComplete && !isRevealing && showCompleteMessage}",
     		ctx
     	});
 
     	return block;
     }
 
-    // (235:29)            
+    // (238:29)            
     function fallback_block(ctx) {
     	let h3;
     	let t;
@@ -6128,7 +6128,7 @@ var app = (function (Keyboard) {
     		},
     		h: function hydrate() {
     			attr_dev(h3, "class", "svelte-186p9qm");
-    			add_location(h3, file$1, 235, 10, 6248);
+    			add_location(h3, file$1, 238, 10, 6290);
     		},
     		m: function mount(target, anchor) {
     			insert_hydration_dev(target, h3, anchor);
@@ -6144,14 +6144,14 @@ var app = (function (Keyboard) {
     		block,
     		id: fallback_block.name,
     		type: "fallback",
-    		source: "(235:29)            ",
+    		source: "(238:29)            ",
     		ctx
     	});
 
     	return block;
     }
 
-    // (234:6) <CompletedMessage showConfetti="{showConfetti}">
+    // (237:6) <CompletedMessage showConfetti="{showConfetti}">
     function create_default_slot(ctx) {
     	let current;
     	const message_slot_template = /*#slots*/ ctx[33].message;
@@ -6206,7 +6206,7 @@ var app = (function (Keyboard) {
     		block,
     		id: create_default_slot.name,
     		type: "slot",
-    		source: "(234:6) <CompletedMessage showConfetti=\\\"{showConfetti}\\\">",
+    		source: "(237:6) <CompletedMessage showConfetti=\\\"{showConfetti}\\\">",
     		ctx
     	});
 
@@ -6406,6 +6406,7 @@ var app = (function (Keyboard) {
     		reset();
     		$$invalidate(9, cells = cells.map(cell => ({ ...cell, value: cell.answer })));
     		startReveal();
+    		dispatch('onReveal', { cells });
     	}
 
     	function onCheck() {

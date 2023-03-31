@@ -149,6 +149,9 @@
       value: cell.answer,
     }));
     startReveal();
+    dispatch('onReveal', {
+			cells
+		});
   }
 
   function onCheck() {
